@@ -11,6 +11,7 @@ B5を選んだらA4サイズを出力するようにする。
 """
 import os
 import tkinter as tk
+from tkinter import filedialog
 import cv2
 import numpy as np
 
@@ -21,12 +22,16 @@ FRM.geometry("300x250") # 横x縦
 FRM.title("GUIだよ")
 
 
-
 # メイン部分設定
 LABEL1 = tk.Label(text="このプログラムを置いたフォルダ内に、\nタイトルと連番付きのPNG画像が生成されます。")
 LABEL1.pack()
 LABEL3 = tk.Label(text="最初にどのフォルダに画像ファイルを生成するか選択してください")
 LABEL3.pack()
+
+var = tk.StringVar()
+LABEL4 = tk.Label(FRM, textvariable=var)
+LABEL4.pack()
+
 HEIBOX = tk.Entry()
 HEIBOX.pack()
 WIGBOX = tk.Entry()
@@ -38,7 +43,7 @@ TITBOX.pack()
 
 # メニューバー仮設定
 #def first():
-    #spass
+    #pass
 def second(self):
     pass
 def third(self):
@@ -46,15 +51,17 @@ def third(self):
 def four(self):
     pass
 
-def folderselect(self):
+def folderselect():
     """
     フォルダ指定をする関数。
     メニューバーのファイルボタン内と、ボタンか起動するたびポップアップ？
     """
     #iDir = os.path.abspath(os.path.dirname(__file__))     #GUI表示でのデフォルトパスを指定
     iDir = "C:\\pg" 
-    PATH = tk.filedialog.askdirectory(initialdir=iDir)   #指定したファイル名を取得する (キャンセル時は空文字)
-    print(PATH)
+    global PATH
+    PATH = filedialog.askdirectory(initialdir=iDir)   #指定したファイル名を取得する (キャンセル時は空文字)
+    var.set(str(PATH))
+    #print(PATH)
     #if folder != "":
         #tk.messagebox.showinfo(Label='folder', command=folder)
 
